@@ -6,4 +6,4 @@ Create a directory from the command line
  Commit your changes with a clear message
  Push the project to Github.
 
- jamie was her
+ jamie was here

@@ -1,4 +1,5 @@
 require 'docking_station'
+require 'bike'
 
 describe Bike do
   it 'expects Bike to respond to method working?' do

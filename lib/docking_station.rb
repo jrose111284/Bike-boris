@@ -24,7 +24,9 @@ class DockingStation
   def empty?
     @bikes.empty?
   end
-
+  def dispatch_broken
+    @bikes.select {|bike| !bike.working?}
+  end
   private
   def all_broken?
    @bikes.all? {|bike|!bike.working?}

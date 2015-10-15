@@ -1,10 +1,10 @@
 require 'docking_station'
 
-  describe DockingStation do
+describe DockingStation do
   let(:bike) { double :bike }
 
   it 'expects DockingStation to respond to method release_bike' do
-      expect(subject).to respond_to :release_bike
+    expect(subject).to respond_to :release_bike
   end
 
   it {is_expected.to respond_to(:dock).with(1).argument }
@@ -23,12 +23,12 @@ require 'docking_station'
   end
 
 
-   describe '#dock' do
-  it 'raises an error when dock is full' do
-    allow(bike).to receive(:working=).with(true).and_return(true)
-    DockingStation::DEFAULT_CAPACITY.times { subject.dock bike }
-    expect { subject.dock double(:bike) }.to raise_error 'Docking station full'
-  end
+  describe '#dock' do
+    it 'raises an error when dock is full' do
+      allow(bike).to receive(:working=).with(true).and_return(true)
+      DockingStation::DEFAULT_CAPACITY.times { subject.dock bike }
+      expect { subject.dock double(:bike) }.to raise_error 'Docking station full'
+    end
 
 
     it 'creates a DockingStation with a capacity that it passed with a argument' do
@@ -64,12 +64,13 @@ require 'docking_station'
       allow(bike).to receive(:working?).and_return(true)
       expect(subject.release_bike).to be_working
     end
-
-
-
   end
-
-
-
-
+  describe 'dispatching broken bikes to be fixed' do
+    it 'returns an Array of broken bikes' do
+      allow(bike).to receive(:working=).with(false).and_return(false)
+      5.times {subject.dock(bike, false)}
+      allow(bike).to receive(:working?).and_return(false)
+      expect(subject.dispatch_broken.count).to eq 5
+    end
+  end
 end

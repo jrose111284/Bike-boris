@@ -25,8 +25,20 @@ require 'bike'
 
    describe '#dock' do
   it 'raises an error when dock is full' do
-    20.times { subject.dock Bike.new }
+    DockingStation::DEFAULT_CAPACITY.times { subject.dock Bike.new }
     expect { subject.dock Bike.new }.to raise_error 'Docking station full'
   end
+
+
+    it 'creates a DockingStation with a capacity that it passed with a argument' do
+      docking_station = DockingStation.new(100)
+      expect(docking_station.capacity).to eq(100)
+    end
+
+    it 'it creates a docking station with DEFAULT_CAPACITY if no capacity is passed' do
+      expect(subject.capacity).to eq(DockingStation::DEFAULT_CAPACITY)
+    
+
+    end
   end
 end

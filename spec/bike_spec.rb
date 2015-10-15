@@ -8,4 +8,5 @@ describe Bike do
     subject.working = false
     expect(subject.working?).to be false
   end
+  
 end

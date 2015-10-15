@@ -27,6 +27,10 @@ class DockingStation
   def dispatch
     @bikes.select {|bike| !bike.working?}
   end
+
+  def accept_fixed_bikes(van)
+    @bikes = @bikes + van.contents
+  end
   private
   def all_broken?
    @bikes.all? {|bike|!bike.working?}

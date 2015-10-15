@@ -2,6 +2,7 @@ require 'docking_station'
 
 describe DockingStation do
   let(:bike) { double :bike }
+  let(:van) {double :van}
 
   it 'expects DockingStation to respond to method release_bike' do
     expect(subject).to respond_to :release_bike
@@ -71,6 +72,12 @@ describe DockingStation do
       5.times {subject.dock(bike, false)}
       allow(bike).to receive(:working?).and_return(false)
       expect(subject.dispatch.count).to eq 5
+    end
+  end
+  describe 'accepting fixed bikes from a van' do
+    it 'adds fixed bikes from a van to it collection' do
+      allow(van).to receive(:contents).and_return([bike, bike])
+      expect(subject.accept_fixed_bikes(van)).to be_instance_of Array
     end
   end
 end

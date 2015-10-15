@@ -14,7 +14,10 @@ require 'bike'
 
   it { is_expected.to respond_to(:bike) }
 
-
+  it 'reports a bike as broken when returning it' do
+    bike = Bike.new
+    expect(subject.dock(bike, false)).to be_instance_of Array
+  end
 
   describe '#release_bike' do
     it 'raises an error when there are no bikes available' do
@@ -37,7 +40,7 @@ require 'bike'
 
     it 'it creates a docking station with DEFAULT_CAPACITY if no capacity is passed' do
       expect(subject.capacity).to eq(DockingStation::DEFAULT_CAPACITY)
-    
+
 
     end
   end

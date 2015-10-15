@@ -21,5 +21,12 @@ describe Garage do
       expect(subject.inventory.count).to eq(10)
     end
   end
+  describe 'Fixing Bikes' do
+    it 'fixes all the bikes in the inventory' do
+      subject.take_delivery(@van)
+      fixed_bikes = subject.fix_all
+      expect( fixed_bikes.all? {|bike| bike.working?}).to be true
+    end
+  end
 
 end

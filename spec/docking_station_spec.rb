@@ -70,7 +70,7 @@ describe DockingStation do
       allow(bike).to receive(:working=).with(false).and_return(false)
       5.times {subject.dock(bike, false)}
       allow(bike).to receive(:working?).and_return(false)
-      expect(subject.dispatch_broken.count).to eq 5
+      expect(subject.dispatch.count).to eq 5
     end
   end
 end
